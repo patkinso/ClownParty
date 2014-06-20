@@ -1,0 +1,22 @@
+Clown\PartyBundle\Entity\Event:
+    type: entity
+    table: event
+    repositoryClass: Clown\PartyBundle\Repository\EventRepository
+
+    fields:
+        id:
+            column: id
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        shortName:
+            column: short_name
+            type: string
+            length: 32
+        longName:
+            column: long_name
+            type: string
+            length: 64
+
+    lifecycleCallbacks:

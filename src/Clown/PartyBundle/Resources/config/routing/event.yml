@@ -1,0 +1,30 @@
+event:
+    pattern:  /
+    defaults: { _controller: "ClownPartyBundle:Event:index" }
+
+event_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClownPartyBundle:Event:show" }
+
+event_new:
+    pattern:  /new
+    defaults: { _controller: "ClownPartyBundle:Event:new" }
+
+event_create:
+    pattern:  /create
+    defaults: { _controller: "ClownPartyBundle:Event:create" }
+    requirements: { _method: post }
+
+event_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClownPartyBundle:Event:edit" }
+
+event_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClownPartyBundle:Event:update" }
+    requirements: { _method: post|put }
+
+event_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClownPartyBundle:Event:delete" }
+    requirements: { _method: post|delete }

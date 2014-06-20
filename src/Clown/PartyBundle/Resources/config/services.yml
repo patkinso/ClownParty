@@ -1,0 +1,7 @@
+parameters:
+#    clown_party.example.class: Clown\PartyBundle\Example
+
+services:
+#    clown_party.example:
+#        class: %clown_party.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

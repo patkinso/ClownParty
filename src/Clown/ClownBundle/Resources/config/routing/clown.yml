@@ -1,0 +1,30 @@
+clown:
+    pattern:  /
+    defaults: { _controller: "ClownClownBundle:Clown:index" }
+
+clown_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClownClownBundle:Clown:show" }
+
+clown_new:
+    pattern:  /new
+    defaults: { _controller: "ClownClownBundle:Clown:new" }
+
+clown_create:
+    pattern:  /create
+    defaults: { _controller: "ClownClownBundle:Clown:create" }
+    requirements: { _method: post }
+
+clown_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClownClownBundle:Clown:edit" }
+
+clown_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClownClownBundle:Clown:update" }
+    requirements: { _method: post|put }
+
+clown_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClownClownBundle:Clown:delete" }
+    requirements: { _method: post|delete }

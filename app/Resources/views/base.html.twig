@@ -1,0 +1,16 @@
+{#
+This is going to be your link between the vendor Presentation Bundle and the project you're working on other pajes you make are going to extend this with a line of code like:
+
+{% extends '::base.html.twig' %}
+
+This will probaly be generated for you. You'll want to extend this in a layout.html.twig file that will be present in the views directory of any bundle you make (you may need to create it).
+ #}
+{% extends 'MesdPresentationBundle::base.html.twig' %}
+
+{% block navbarContentLeft %}
+{# I dont think I did this right. I'm not really sure how to access a namespace from an anchor. #}
+    <ul class="nav navbar-nav">
+        <li><a href="/clownparty/dev/clown">Clowns</a></li>
+        <li><a href="/clownparty/dev/party">Parties</a></li>
+    </ul>
+{% endblock navbarContentLeft %}

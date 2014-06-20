@@ -1,0 +1,15 @@
+{% extends 'ClownClownBundle::layout.html.twig' %}
+
+{% block contentBody %}
+    <h1>PropType creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('proptype') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock contentBody %}

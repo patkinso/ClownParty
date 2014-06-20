@@ -1,0 +1,28 @@
+clown_clown_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ClownClownBundle:Default:index }
+
+ClownClownBundle_clown:
+    resource: "@ClownClownBundle/Resources/config/routing/clown.yml"
+    prefix:   /clown
+
+ClownClownBundle_clownschool:
+    resource: "@ClownClownBundle/Resources/config/routing/clownschool.yml"
+    prefix:   /clownschool
+
+ClownClownBundle_clownschoolattendance:
+    resource: "@ClownClownBundle/Resources/config/routing/clownschoolattendance.yml"
+    prefix:   /clownschoolattendance
+
+ClownClownBundle_clowntype:
+    resource: "@ClownClownBundle/Resources/config/routing/clowntype.yml"
+    prefix:   /clowntype
+
+ClownClownBundle_prop:
+    resource: "@ClownClownBundle/Resources/config/routing/prop.yml"
+    prefix:   /prop
+
+ClownClownBundle_proptype:
+    resource: "@ClownClownBundle/Resources/config/routing/proptype.yml"
+    prefix:   /proptype
+

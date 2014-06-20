@@ -1,0 +1,19 @@
+{% extends 'ClownClownBundle::layout.html.twig' %}
+
+{% block contentBody %}
+    <h1>ClownType creation</h1>
+
+    {{ form_start(form) }}
+    {% do form.shortName.setRendered %}
+    {{ form_row(form.shortName) }}
+    {{ form_label(form.longName) }}{{ form_widget(form.longName) }}
+    {{ form_end(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('clowntype') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock contentBody %}

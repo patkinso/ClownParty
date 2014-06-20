@@ -1,0 +1,17 @@
+{% extends 'ClownPartyBundle::layout.html.twig' %}
+
+{% block title %}<title>SO MANY CLOWNS</title>{% endblock %}
+
+{% block contentBody %}
+    <h1>Event creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('event') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock contentBody %}

@@ -1,0 +1,55 @@
+{% extends 'ClownPartyBundle::layout.html.twig' %}
+
+{% block contentBody %}
+    <h1>Party list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Events</th>
+                <th>Attending Clowns</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('party_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.time | date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.location }}</td>
+                <td><table>
+                    {% for subEntity in entity.events %}
+                        <tr><td>{{ subEntity.longName }}</td></tr>
+                    {% endfor %}
+                </table></td>
+                <td><table>
+                    {% for subEntity in entity.clowns %}
+                        <tr><td>{{ subEntity.name }}</td></tr>
+                    {% endfor %}
+                </table></td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('party_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('party_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('party_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+{% endblock contentBody %}

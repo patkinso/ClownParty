@@ -1,0 +1,15 @@
+{% extends 'ClownClownBundle::layout.html.twig' %}
+
+{% block contentBody %}
+    <h1>Clown creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('clown') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock contentBody %}

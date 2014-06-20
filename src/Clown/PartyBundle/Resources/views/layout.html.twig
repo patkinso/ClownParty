@@ -1,0 +1,24 @@
+{#
+All the instructional comments are in the layout.html.twig present in ClownBundle.
+#}
+
+{% extends '::base.html.twig' %}
+
+{% block sidebar %}
+    {{ render(controller('MesdPresentationBundle:Default:sidebar', {
+        'route': app.request.get('_route'),
+        'options': { 'type': '' },
+        'menu': {
+            'Party': {
+                'path': '/clownparty/dev/party',
+                'title': 'danceparty!',
+                'icon': 'fa fa-plus-square'
+            },
+            'Event': {
+                'path': '/clownparty/dev/event',
+                'title': 'event horizon, no going back',
+                'icon': 'fa fa-plus-square'
+            }
+        }}))
+    }}
+{% endblock sidebar %}

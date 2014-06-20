@@ -1,0 +1,39 @@
+{% extends 'ClownClownBundle::layout.html.twig' %}
+
+{% block contentBody %}
+    <h1>ClownType list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Shortname</th>
+                <th>Longname</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('clowntype_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.shortName }}</td>
+                <td>{{ entity.longName }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('clowntype_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('clowntype_new') }}">
+                Create a new entry
+            </a>
+        </li>
+{% endblock contentBody %}

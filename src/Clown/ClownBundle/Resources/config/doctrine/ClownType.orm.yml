@@ -1,0 +1,24 @@
+Clown\ClownBundle\Entity\ClownType:
+    type: entity
+    table: clown_type
+    repositoryClass: Clown\ClownBundle\Repository\ClownTypeRepository
+
+    fields:
+        id:
+            column: id
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        shortName:
+            column: short_name
+            type: string
+            length: 32
+        longName:
+            column: long_name
+            type: string
+            length: 64
+
+lifecycleCallbacks:
+        prePersist: [ setUpdatedValue ]
+        preUpdate: [ setUpdatedValue ]

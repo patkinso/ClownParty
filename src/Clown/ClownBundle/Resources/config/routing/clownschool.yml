@@ -1,0 +1,30 @@
+clownschool:
+    pattern:  /
+    defaults: { _controller: "ClownClownBundle:ClownSchool:index" }
+
+clownschool_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClownClownBundle:ClownSchool:show" }
+
+clownschool_new:
+    pattern:  /new
+    defaults: { _controller: "ClownClownBundle:ClownSchool:new" }
+
+clownschool_create:
+    pattern:  /create
+    defaults: { _controller: "ClownClownBundle:ClownSchool:create" }
+    requirements: { _method: post }
+
+clownschool_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClownClownBundle:ClownSchool:edit" }
+
+clownschool_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClownClownBundle:ClownSchool:update" }
+    requirements: { _method: post|put }
+
+clownschool_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClownClownBundle:ClownSchool:delete" }
+    requirements: { _method: post|delete }

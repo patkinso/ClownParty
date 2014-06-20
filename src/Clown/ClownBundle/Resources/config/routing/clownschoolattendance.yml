@@ -1,0 +1,30 @@
+clownschoolattendance:
+    pattern:  /
+    defaults: { _controller: "ClownClownBundle:ClownSchoolAttendance:index" }
+
+clownschoolattendance_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClownClownBundle:ClownSchoolAttendance:show" }
+
+clownschoolattendance_new:
+    pattern:  /new
+    defaults: { _controller: "ClownClownBundle:ClownSchoolAttendance:new" }
+
+clownschoolattendance_create:
+    pattern:  /create
+    defaults: { _controller: "ClownClownBundle:ClownSchoolAttendance:create" }
+    requirements: { _method: post }
+
+clownschoolattendance_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClownClownBundle:ClownSchoolAttendance:edit" }
+
+clownschoolattendance_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClownClownBundle:ClownSchoolAttendance:update" }
+    requirements: { _method: post|put }
+
+clownschoolattendance_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClownClownBundle:ClownSchoolAttendance:delete" }
+    requirements: { _method: post|delete }

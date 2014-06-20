@@ -1,0 +1,31 @@
+Clown\ClownBundle\Entity\ClownSchoolAttendance:
+    type: entity
+    table: clown_school_attendance
+    repositoryClass: Clown\ClownBundle\Repository\ClownSchoolAttendanceRepository
+
+    fields:
+        id:
+            column: id
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        years:
+            column: years
+            type: integer
+
+    manyToOne:
+        school:
+            targetEntity: ClownSchool
+            inversedBy: clownSchoolAttendance
+            joinColumn:
+                name: school_id
+                referencedColumnName: id
+        clown:
+            targetEntity: Clown
+            inversedBy: clownSchoolAttendance
+            joinColumn:
+                name: clown_id
+                referencedColumnName: id
+
+    lifecycleCallbacks:

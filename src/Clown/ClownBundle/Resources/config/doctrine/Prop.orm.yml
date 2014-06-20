@@ -1,0 +1,34 @@
+Clown\ClownBundle\Entity\Prop:
+    type: entity
+    table: prop
+    repositoryClass: Clown\ClownBundle\Repository\PropRepository
+
+    fields:
+        id:
+            column: id
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        quality:
+            column: quality
+            type: integer
+
+    manyToOne:
+        propType:
+            targetEntity: PropType
+            joinColumn:
+                name: prop_type_id
+
+# In the database the prop owns the clown. This means when you make a prop
+# you set up the relationship (give it to a clown) This is a bit confusing
+# when mixed with real world conceptual phrasing (the prop owns the Owned By
+# relationship so it's owned by the clown [the clown doesn't own it]).
+        clown:
+            targetEntity: Clown
+            inversedBy: prop
+            joinColumn:
+                name: clown_id
+                referencedColumnName: id
+
+    lifecycleCallbacks:

@@ -1,0 +1,49 @@
+Clown\PartyBundle\Entity\Party:
+    type: entity
+    table: party
+    repositoryClass: Clown\PartyBundle\Repository\PartyRepository
+
+    fields:
+        id:
+            column: id
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        time:
+            column: time
+            type: datetime
+        location:
+            column: location
+            type: text
+
+    manyToMany:
+# Bidirectional, owned by Party
+        clowns:
+            targetEntity: Clown\ClownBundle\Entity\Clown
+            inversedBy: parties
+            joinTable:
+                name: parties_clowns
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    clown_id:
+                        referencedColumnName: id
+
+
+# Unidirectional
+        events:
+            targetEntity: Event
+            joinTable:
+                name: party_events
+                joinColumns:
+                    party_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    event_id:
+                        referencedColumnName: id
+
+
+
+    lifecycleCallbacks:

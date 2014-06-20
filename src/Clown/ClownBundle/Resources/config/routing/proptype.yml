@@ -1,0 +1,30 @@
+proptype:
+    pattern:  /
+    defaults: { _controller: "ClownClownBundle:PropType:index" }
+
+proptype_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClownClownBundle:PropType:show" }
+
+proptype_new:
+    pattern:  /new
+    defaults: { _controller: "ClownClownBundle:PropType:new" }
+
+proptype_create:
+    pattern:  /create
+    defaults: { _controller: "ClownClownBundle:PropType:create" }
+    requirements: { _method: post }
+
+proptype_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClownClownBundle:PropType:edit" }
+
+proptype_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClownClownBundle:PropType:update" }
+    requirements: { _method: post|put }
+
+proptype_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClownClownBundle:PropType:delete" }
+    requirements: { _method: post|delete }

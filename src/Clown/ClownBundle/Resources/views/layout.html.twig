@@ -1,0 +1,37 @@
+{#
+Layout will be displayed when you are in a particular bundle (this one should be in the Clown Bundle). An good thing to put here would be the sidebar which I have done as you can see below. Make sure your sub pages extend layout with a command simmilar to this:
+
+{% extends 'ClownClownBundle::layout.html.twig' %}
+#}
+
+
+{% extends '::base.html.twig' %}
+
+{% block sidebar %}
+    {{ render(controller('MesdPresentationBundle:Default:sidebar', {
+        'route': app.request.get('_route'),
+        'options': { 'type': '' },
+        'menu': {
+            'Props': {
+                'path': '/clownparty/dev/prop',
+                'title': 'mad props man',
+                'icon': 'fa fa-plus-square'
+            },
+            'Clowns': {
+                'path': '/clownparty/dev/clown',
+                'title': 'quit clowning around!',
+                'icon': 'fa fa-plus-square'
+            },
+            'Prop Types': {
+                'path': '/clownparty/dev/proptype',
+                'title': 'most aircrafts are jets now anyways',
+                'icon': 'fa fa-plus-square'
+            },
+            'Clown Types': {
+                'path': '/clownparty/dev/clowntype',
+                'title': 'be the allclown',
+                'icon': 'fa fa-plus-square'
+            }
+        }}))
+    }}
+{% endblock sidebar %}

@@ -1,0 +1,22 @@
+Clown\ClownBundle\Entity\PropType:
+    type: entity
+    table: prop_type
+    repositoryClass: Clown\ClownBundle\Repository\PropTypeRepository
+
+    fields:
+        id:
+            column: id
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        shortName:
+            column: short_name
+            type: string
+            length: 32
+        longName:
+            column: long_name
+            type: string
+            length: 64
+
+lifecycleCallbacks:

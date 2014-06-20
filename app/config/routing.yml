@@ -1,0 +1,7 @@
+clown_party:
+    resource: "@ClownPartyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+clown_clown:
+    resource: "@ClownClownBundle/Resources/config/routing.yml"
+    prefix:   /

@@ -1,0 +1,11 @@
+clown_party_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ClownPartyBundle:Default:index }
+
+ClownPartyBundle_party:
+    resource: "@ClownPartyBundle/Resources/config/routing/party.yml"
+    prefix:   /party
+
+ClownPartyBundle_event:
+    resource: "@ClownPartyBundle/Resources/config/routing/event.yml"
+    prefix:   /event

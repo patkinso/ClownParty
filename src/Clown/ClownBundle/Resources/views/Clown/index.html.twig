@@ -1,0 +1,75 @@
+{% extends 'ClownClownBundle::layout.html.twig' %}
+
+{% block contentBody %}
+    <h1>Clown list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Schooling</th>
+                <th>Nosesqueak Frequency</th>
+                <th>Laughs Generated</th>
+                <th>Children Eaten</th>
+                <th>Props</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('clown_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.description }}</td>
+
+                <td><table>
+                    {% for subEntity in entity.clownSchoolAttendance %}
+                        <tr><td>{{ subEntity.school }} for {{ subEntity.years }} years</td></tr>
+                    {% endfor %}
+                    {#
+                        Something interesting happens here with subEntity.school. The actual display name of the school appears when all the ClownSchoolAttendance table has is the id.
+
+                                    school:
+                                        targetEntity: ClownSchool
+                                        inversedBy: clownSchoolAttendance
+                                        joinColumn:
+                                            name: school_id
+                                            referencedColumnName: id
+
+                        I think what's happenning is it recognizes ClownSchoolAttendance as a relational table and passes over it to reach the Clown School table and its __toString() returning the actual name of the school.
+                    #}
+                </table></td>
+
+                <td>{{ entity.noseSqueakFrequency }}</td>
+                <td>{{ entity.laughsGenerated }}</td>
+                <td>{{ entity.childrenEaten }}</td>
+                <td><table>
+                    {% for subEntity in entity.prop %}
+                        <tr><td>{{ subEntity.propType }} of quality </td><td>{{ subEntity.quality }}</td></tr>
+                    {% endfor %}
+                </table></td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('clown_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('clown_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('clown_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+{% endblock contentBody %}

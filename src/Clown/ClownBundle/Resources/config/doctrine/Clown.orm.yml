@@ -1,0 +1,49 @@
+Clown\ClownBundle\Entity\Clown:
+    type: entity
+    table: clown
+    repositoryClass: Clown\ClownBundle\Repository\ClownRepository
+
+    fields:
+        id:
+            column: id
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            column: name
+            type: string
+            length: 64
+        description:
+            column: description
+            type: text
+        noseSqueakFrequency:
+            column: nose_squeak_frequency
+            type: integer
+        laughsGenerated:
+            column: laughs_generated
+            type: integer
+        childrenEaten:
+            column: childern_eaten
+            type: integer
+
+    manyToMany:
+        parties:
+            targetEntity: Clown\PartyBundle\Entity\Party
+            mappedBy: clowns
+
+    manyToOne:
+        clownType:
+            targetEntity: ClownType
+            joinColumn:
+                name: clown_type_id
+
+    oneToMany:
+        prop:
+            targetEntity: Prop
+            mappedBy: clown
+        clownSchoolAttendance:
+            targetEntity: ClownSchoolAttendance
+            mappedBy: clown
+
+    lifecycleCallbacks:
