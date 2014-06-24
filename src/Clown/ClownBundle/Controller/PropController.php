@@ -108,6 +108,27 @@ class PropController extends Controller
             'delete_form' => $deleteForm->createView(),        ));
     }
 
+    public function showPropListAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('ClownClownBundle:Clown')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Clown entity.');
+        }
+
+        $qb = $em->getRepository('ClownClownBundle:Prop')->createQueryBuilder('prop');
+        $qb->join('prop.clown', 'clown');
+        $qb->andWhere($qb->expr()->eq('clown.id', ':clownid'));
+        $qb->setParameter('clownid', $id);
+        $entities = $qb->getQuery()->getResult();
+
+        return $this->render('ClownClownBundle:Prop:clownpropslist.html.twig', array(
+            'entities'      => $entities
+        ));
+    }
+
     /**
      * Displays a form to edit an existing Prop entity.
      *

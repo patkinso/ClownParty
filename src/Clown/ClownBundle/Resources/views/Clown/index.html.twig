@@ -1,6 +1,13 @@
 {% extends 'ClownClownBundle::layout.html.twig' %}
 
 {% block contentBody %}
+
+{#
+    <script type="text/javascript">
+        alert("{{ entities[0].description }}");
+    </script>
+#}
+
     <h1>Clown list</h1>
 
     <table class="records_list">
@@ -10,6 +17,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Schooling</th>
+                <th></th>
                 <th>Nosesqueak Frequency</th>
                 <th>Laughs Generated</th>
                 <th>Children Eaten</th>
@@ -26,7 +34,7 @@
 
                 <td><table>
                     {% for subEntity in entity.clownSchoolAttendance %}
-                        <tr><td>{{ subEntity.school }} for {{ subEntity.years }} years</td></tr>
+                        <tr><td>{{ subEntity.school }} for </td></tr>
                     {% endfor %}
                     {#
                         Something interesting happens here with subEntity.school. The actual display name of the school appears when all the ClownSchoolAttendance table has is the id.
@@ -39,17 +47,50 @@
                                             referencedColumnName: id
 
                         I think what's happenning is it recognizes ClownSchoolAttendance as a relational table and passes over it to reach the Clown School table and its __toString() returning the actual name of the school.
+
+
+                        This is called lazy loading. There is an alternate way to do this.
                     #}
                 </table></td>
 
+                <td><table>
+                    {% for subEntity in entity.clownSchoolAttendance %}
+                        <tr><td>{{ subEntity.years }} years</td></tr>
+                    {% endfor %}
+                </table></td>
                 <td>{{ entity.noseSqueakFrequency }}</td>
                 <td>{{ entity.laughsGenerated }}</td>
                 <td>{{ entity.childrenEaten }}</td>
-                <td><table>
-                    {% for subEntity in entity.prop %}
-                        <tr><td>{{ subEntity.propType }} of quality </td><td>{{ subEntity.quality }}</td></tr>
-                    {% endfor %}
-                </table></td>
+                <td>
+ {#                    {% for subEntity in entity.getProp %}
+                        <div class="row">
+                            <div class="col-md-2-3">
+
+                                {% if subEntity.isEvil %}
+                                    <div class='evil'>
+                                {% endif %}
+                                {% if subEntity.isExceptional %}
+                                    <div class='exceptional'>
+                                {% endif %}
+                                {{ subEntity.propType }}
+                                {% if subEntity.isExceptional %}
+                                    </div>
+                                {% endif %}
+                                {% if subEntity.isEvil %}
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                            <div class="col-md-1-3">
+                                {{ subEntity.quality }}
+                            </div>
+                            </div>
+                    {% endfor %} #}
+
+                        <button data-role-clown-id={{ entity.id }} class="clownbuttonclass">List Props</button>
+                        <input type="button" class="createdclownbuttonclass" toggle-state="1" value="Hide" hidden/>
+
+                </td>
                 <td>
                 <ul>
                     <li>
@@ -73,3 +114,13 @@
         </li>
     </ul>
 {% endblock contentBody %}
+
+{% block javascripts %}
+{{ parent() }}
+    {% include 'ClownClownBundle:Clown:clownbutton.js.twig' %}
+{% endblock javascripts %}
+{#
+{% block javascript2 %}
+    {{ parent() }};
+    {% include 'ClownClownBundle:Clown:clownindex.js.twig' %}
+{% endblock javascript2 %} #}

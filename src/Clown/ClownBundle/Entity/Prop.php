@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Prop
 {
+
     /**
      * @var integer
      */
@@ -33,7 +34,7 @@ class Prop
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -49,18 +50,58 @@ class Prop
     public function setQuality($quality)
     {
         $this->quality = $quality;
-
-        return $this;
     }
+
+private $MIN_EVIL_PROP_QUALITY = -10;
+
+public function getMIN_EVIL_PROP_QUALITY() {
+     return $this->MIN_EVIL_PROP_QUALITY;
+}
+
+public function setMIN_EVIL_PROP_QUALITY( $MIN_EVIL_PROP_QUALITY ) {
+    $this->MIN_EVIL_PROP_QUALITY = $MIN_EVIL_PROP_QUALITY;
+    return $this;
+}
+
+private $MIN_EXCEPTIONAL_PROP_QUALITY = 5;
+
+public function getMIN_EXCEPTIONAL_PROP_QUALITY () {
+     return $this->MIN_EXCEPTIONAL_PROP_QUALITY;
+}
+
+public function setMIN_EXCEPTIONAL_PROP_QUALITY ( $MIN_EXCEPTIONAL_PROP_QUALITY ) {
+    $this->MIN_EXCEPTIONAL_PROP_QUALITY = $MIN_EXCEPTIONAL_PROP_QUALITY;
+    return $this;
+}
 
     /**
      * Get quality
      *
-     * @return integer 
+     * @return integer
      */
     public function getQuality()
     {
         return $this->quality;
+    }
+
+    /**
+     *
+     *
+     * @return integer
+     */
+    public function isExceptional()
+    {
+        return $this->quality>5;
+    }
+
+    /**
+     *
+     *
+     * @return integer
+     */
+    public function isEvil()
+    {
+        return $this->quality<-10;
     }
 
     /**
@@ -79,7 +120,7 @@ class Prop
     /**
      * Get propType
      *
-     * @return \Clown\ClownBundle\Entity\PropType 
+     * @return \Clown\ClownBundle\Entity\PropType
      */
     public function getPropType()
     {
@@ -102,7 +143,7 @@ class Prop
     /**
      * Get owner
      *
-     * @return \Clown\ClownBundle\Entity\Clown 
+     * @return \Clown\ClownBundle\Entity\Clown
      */
     public function getOwner()
     {
@@ -130,7 +171,7 @@ class Prop
     /**
      * Get clown
      *
-     * @return \Clown\ClownBundle\Entity\Clown 
+     * @return \Clown\ClownBundle\Entity\Clown
      */
     public function getClown()
     {

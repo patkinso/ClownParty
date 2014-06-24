@@ -32,6 +32,8 @@ assetic:
     use_controller: false
     bundles:
     - MesdPresentationBundle
+#    - ClownClownBundle
+#    - ClownPartyBundle
     filters:
         cssrewrite: ~
         cssembed:
@@ -57,6 +59,13 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+
+services:
+    clown.test.listener:
+        class: Clown\ClownBundle\EventListener\ClownDoSomethingListener
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+        arguments: [@logger]
 
 # Swiftmailer Configuration
 swiftmailer:

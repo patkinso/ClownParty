@@ -23,7 +23,46 @@ class ClownController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ClownClownBundle:Clown')->findAll();
+//        $entities = $em->getRepository('ClownClownBundle:Clown')->findAll();
+
+//        Constructing a querry, $qb is what we use to hold a query we are building.
+//        It is created by having our event manager getRepository and then createQueryBuilder();
+//        leftJoin()
+//       addSelect()
+        // $qb = $em->getRepository('ClownClownBundle:Clown')->createQueryBuilder('clown');
+        // $qb->leftJoin('clown.prop', 'prop');
+        // $qb->addSelect('prop');
+        // $qb->leftJoin('clown.clownSchoolAttendance', 'attendance');
+        // $qb->addSelect('attendance');
+        // $qb->leftJoin('attendance.school', 'school');
+        // $qb->addSelect('school');
+        // $qb->leftJoin('prop.propType', 'propType');
+        // $qb->addSelect('propType');
+        // var_dump($qb->getDQLParts()['select']);
+        // print_r('<br><br>');
+        // print_r($qb->getQuery()->getSQL());
+        // die;
+
+        $qb = $em->getRepository('ClownClownBundle:Clown')->createQueryBuilder('clown');
+        $qb->leftJoin('clown.prop', 'prop');
+        // $qb->leftJoin('clown.prop', 'prop', Expr\Join::WITH, $qb->expr()->orX($qb->expr()->lte('prop.quality', '-10'), $qb->expr()->gte('prop.quality', '8')));
+//      Show only Exceptional quality props
+        // $qb->andWhere($qb->expr()->orX($qb->expr()->lte('prop.quality', '-10'), $qb->expr()->gte('prop.quality', '8')));
+        $qb->addSelect('prop');
+        // $qb->where('clown.id = 1');
+        $qb->leftJoin('clown.clownSchoolAttendance', 'attendance');
+        $qb->addSelect('attendance');
+        $qb->leftJoin('attendance.school', 'school');
+        $qb->addSelect('school');
+        $qb->leftJoin('prop.propType', 'propType');
+        $qb->addSelect('propType');
+        $qb->addOrderBy('clown.name', 'DESC');
+        // var_dump($qb->getDQLParts()['select']);
+        // print_r('<br><br>');
+        // print_r($qb->getQuery()->getSQL());
+        // die;
+
+        $entities = $qb->getQuery()->getResult();
 
         return $this->render('ClownClownBundle:Clown:index.html.twig', array(
             'entities' => $entities,
@@ -219,5 +258,11 @@ class ClownController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    public function buttsAction()
+    {
+        return $this->render('ClownClownBundle:Clown:butts.html.twig', array(
+        ));
     }
 }

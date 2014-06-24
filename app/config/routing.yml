@@ -5,3 +5,7 @@ clown_party:
 clown_clown:
     resource: "@ClownClownBundle/Resources/config/routing.yml"
     prefix:   /
+
+MesdPresentationBundle_demo:
+    prefix: /ui
+    resource: "@MesdPresentationBundle/Resources/config/routing.yml"

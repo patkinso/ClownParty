@@ -1,0 +1,76 @@
+<script type="text/javascript">
+    $.ready()
+    {
+        // $('div.evil').parent().parent().parent().children('.row').children('.col-md-2-3').each(function ()
+        //     {
+        //         $(this).addClass('btn btn-danger');
+        //     });
+        // $('.btn').on('click', function()
+        // {
+        //     $(this).load('/clownparty/dev/clown/butts');
+        // });
+
+
+
+        $('.records_list').on('click', '.clownbuttonclass', function()
+        {
+            var id = $(this).attr('data-role-clown-id');
+            var loadString = '/clownparty/dev/prop/'+id+'/clownlist';
+            var holder = $(this).parent();
+            holder.children().addClass('text-muted');
+            //alert(loadString)
+            $.ajax({
+                url: loadString,
+                success: function(result)
+            {
+                holder.children().hide();
+                holder.children().removeClass('text-muted');
+                holder.append(result);
+                //Make a new button that will toggle the data
+                //$('<button>Test</button>').click(function () { alert('hi'); });
+                var toggleButton = holder.children('.createdclownbuttonclass');
+                toggleButton.attr('toggle-state', '1');
+                toggleButton.show();
+                //holder.children($('.createdclownbuttonclassHIDE')).hide()
+            }});
+
+        //     $('.result').load(loadString, function(result)
+        //     {
+        //         alert("loaded")
+        //         alert(result)
+
+        //         // var loadedHTML = $('#result').html();
+        //         //holder.append(loadedHTML);
+        //     });
+        });
+
+        //Make another onclick listener for the new button that is created that will toggle between shown and unshown
+        $('.records_list').on('click', '.createdclownbuttonclass', function ()
+        {
+            var holder = $(this).parent();
+            var toggleState = $(this).attr('toggle-state');
+            if(toggleState==1)
+            {
+                $(this).attr('value', 'Show');
+                holder.children().children().hide('.propslist');
+                $(this).attr('toggle-state', '0');
+            }
+            else
+            {
+                $(this).attr('value', 'Hide');
+                holder.children().children().show('.propslist');
+                $(this).attr('toggle-state', '1');
+            }
+        })
+
+    };
+
+    var hideButtonFunction = function ()
+        {
+            alert("butts");
+            $('.recrds_list').on('click', '.createdclownbuttonclassHIDE', function()
+            {
+
+            });
+        };
+</script>

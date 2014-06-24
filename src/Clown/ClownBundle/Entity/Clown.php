@@ -3,6 +3,8 @@
 namespace Clown\ClownBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Clown\ClownBundle\Entity\Prop;
+
 
 /**
  * Clown
@@ -285,6 +287,78 @@ class Clown
      */
     private $parties;
 
+    /**
+     * Get exceptional prop
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExceptionalProp()
+    {
+
+
+        // $props = $this->prop->toArray();
+        // foreach( $props as $key => $value )
+        // {
+        //     if( !($value->getQuality() >= $this->MIN_EXCEPTIONAL_PROP_QUALITY or $value->getQuality() <= $this->MIN_EVIL_PROP_QUALITY))
+        //     {
+        //         unset($props[$key]);
+        //     }
+        // }
+
+        // return $props;
+
+
+
+        // $props = $this->prop->toArray();
+        // $clown = $this;
+        // return array_filter($props,
+        //     function ($prop) use ($clown)
+        //     {
+        //         return ($prop->getQuality() >= $clown->MIN_EXCEPTIONAL_PROP_QUALITY or $prop->getQuality() <= $clown->MIN_EVIL_PROP_QUALITY);
+        //     }
+        //     );
+
+
+        $clown = $this;
+        return $this->prop->filter(
+            function ($prop) use ($clown)
+            {
+                return ($prop->getQuality() >= Prop::$MIN_EXCEPTIONAL_PROP_QUALITY or $prop->getQuality() <= Prop::$MIN_EVIL_PROP_QUALITY);
+            }
+            );
+    }
+
+    /**
+     * Get prop with added field determining boldness
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBoldedProp()
+    {
+
+        $props = $this->prop->toArray();
+        $returnArray = [];
+        foreach( $props as $key => $value )
+        {
+            if( $value->getQuality() >= Prop::$MIN_EXCEPTIONAL_PROP_QUALITY or $value->getQuality() <= Prop::$MIN_EVIL_PROP_QUALITY)
+            {
+                $returnArray[$value] = 0;
+            }
+            else $value = [$value, 1];
+        }
+        var_dump($props);
+        return $returnArray;
+
+        // return map($this->prop,
+        //     function
+        //     {
+        //         if($prop->getQuality() >= $clown->MIN_EXCEPTIONAL_PROP_QUALITY or $prop->getQuality() <= $clown->MIN_EVIL_PROP_QUALITY)
+        //         {
+        //             $prop->set(isbold, 1);
+        //         }
+        //     }
+        //     );
+    }
 
     /**
      * Add parties
@@ -350,7 +424,7 @@ class Clown
     /**
      * Get clownSchool
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getClownSchool()
     {
@@ -388,7 +462,7 @@ class Clown
     /**
      * Get clownSchoolAttendance
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getClownSchoolAttendance()
     {

@@ -28,3 +28,7 @@ prop_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ClownClownBundle:Prop:delete" }
     requirements: { _method: post|delete }
+
+prop_clownlist:
+    pattern:  /{id}/clownlist
+    defaults: { _controller: "ClownClownBundle:Prop:showPropList" }
